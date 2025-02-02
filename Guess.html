@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number Project</title>
+    <link rel="stylesheet" href="Guess.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Guess The Number</h1>
+        <input type="number" id="guessnumber" placeholder="Enter a number (1-10)">
+        <button onclick="change()">Check</button>
+        <p id="result">Make your guess!</p>
+        <p id="score">Score: 10</p>
+    </div>
+
+    <script>
+        var GuessNumber = document.getElementById("guessnumber");
+        var scoreDisplay = document.getElementById("score");
+        var result = document.getElementById("result");
+        var RandomNumber = Math.floor(Math.random() * 10) + 1;
+        var scoreNumber = 10;
+        var gameEnded = false;
+
+        function change() {
+            if (gameEnded) return;
+
+            var EnterGuessNumber = Number(GuessNumber.value);
+            if (EnterGuessNumber === RandomNumber) {
+                result.textContent = "Correct! You guessed the number.";
+                alert("YOU WON! The correct number was " + RandomNumber);
+                gameEnded = true;
+            } else {
+                scoreNumber--;
+                if (scoreNumber > 0) {
+                    result.textContent = "Wrong! Try again.";
+                } else {
+                    result.textContent = "Game Over! You ran out of tries.";
+                    alert("Game Over! The correct number was " + RandomNumber);
+                    gameEnded = true; // End the game
+                }
+                scoreDisplay.textContent = "Score: " + scoreNumber;
+            }
+        }
+    </script>    
+</body>
+</html>
